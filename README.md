@@ -18,7 +18,7 @@ The following commands must all be run from the root directory:
 
 # Development
 
-Update your marvel api private & public key into `/config/marvel-account.json`.
+Update your marvel api private & public key into `/config/marvel-config.json`.
 
 The following commands can be run:
 
