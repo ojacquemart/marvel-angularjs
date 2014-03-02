@@ -1,5 +1,5 @@
 angular.module('marvel.common')
-    .directive('navbar', [ function() {
+    .directive('mvNavbar', [ function() {
       return {
           restrict: 'E',
           replace: true,
