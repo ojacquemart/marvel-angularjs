@@ -8,11 +8,14 @@
     <title ng-bind="title"></title>
 
     <!-- build:css(.tmp) assets/css/main.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <!-- endbuild -->
 </head>
 <body>
-    <div class="container" ng-view></div>
+    <mv-navbar></mv-navbar>
+    <div ng-view></div>
+    <mv-footer></mv-footer>
 
     <!-- build:js app/angular.js -->
     <script src="bower_components/angular/angular.js"></script>
@@ -27,10 +30,15 @@
     <script src="app/app.js"></script>
     <script src="app/marvel-config.js"></script>
     <script src="app/common/common.mdl.js"></script>
-    <script src="app/characters/characters.mdl.js"></script>
-    <script src="app/characters/characters.mdl.js"></script>
+    <script src="app/common/marvel-restangular.srv.js"></script>
+    <script src="app/common/navbar/navbar.dir.js"></script>
+    <script src="app/common/footer/footer.dir.js"></script>
+    <script src="app/battle/battle.ctrl.js"></script>
+    <script src="app/battle/battle-api.srv.js"></script>
+    <script src="app/battle/random-offset.srv.js"></script>
+    <script src="app/battle/character.srv.js"></script>
+    <script src="app/battle/arena.srv.js"></script>
     <script src="app/characters/characters.ctrl.js"></script>
-    <script src="app/comics/comics.mdl.js"></script>
     <script src="app/comics/comics.ctrl.js"></script>
     <!-- endbuild -->
     </body>

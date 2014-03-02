@@ -1,18 +1,27 @@
-'use strict';
-
 angular.module('marvel.app', [
         'ngRoute',
         'restangular',
         'marvel.config',
-        'marvel.common',
-        'marvel.characters',
-        'marvel.comics'
+        'marvel.common'
     ])
     .config([ '$routeProvider', 'MarvelConfig', 'RestangularProvider', function ($routeProvider, MarvelConfig, RestangularProvider) {
-        function setDefaultRoute() {
-            $routeProvider.otherwise({
-                redirectTo: '/characters'
-            });
+        function setRoutes() {
+            $routeProvider
+                .when('/battle', {
+                    controller: 'BattleCtrl',
+                    templateUrl: 'app/battle/battle.html'
+                })
+                .when('/characters', {
+                    controller: 'CharactersCtrl',
+                    templateUrl: 'app/characters/characters.html'
+                })
+                .when('/comics', {
+                    controller: 'ComicsCtrl',
+                    templateUrl: 'app/comics/comics.html'
+                })
+                .otherwise({
+                    redirectTo: '/battle'
+                });
         };
 
         function setRestangularDefaultConfig() {
@@ -27,7 +36,7 @@ angular.module('marvel.app', [
             });
         };
 
-        setDefaultRoute();
+        setRoutes();
         setRestangularDefaultConfig();
     }])
     .run(['$rootScope', '$location', function ($rootScope, $location) {
