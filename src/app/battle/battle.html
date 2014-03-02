@@ -1,6 +1,5 @@
 <div class="header alt vert">
     <div class="container">
-
         <h1>Marvel Battle</h1>
         <p class="lead">Click on the character to vote for him and keep fighting</p>
         <a ng-click="arena.restart()" class="btn btn-default btn-lg">New fight!</a>
@@ -9,13 +8,6 @@
 
 <div class="blurb bright">
     <div class="row">
-        <div class="battle-col col-sm-4" ng-class="{ 'col-sm-offset-2': $index == 0 }" ng-repeat="character in arena.characters">
-            <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                    <img ng-click="arena.keepCharacter($index)" class="cursor-pointer" ng-src="{{ character.picture }}" />
-                    <h2>{{ character.name }}</h2>
-                </div>
-            </div>
-        </div>
+        <mv-character ng-repeat="character in arena.characters"></mv-character>
     </div>
 </div>

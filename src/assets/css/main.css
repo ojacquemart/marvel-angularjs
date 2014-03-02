@@ -7,6 +7,10 @@ body {
     font-family:Arial,sans-serif;
 }
 
+.fa-6x {
+    font-size: 6em;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
@@ -15,9 +19,22 @@ body {
     padding: 20px 10px 0 10px;
 }
 
-.battle-col img {
+.panel-heading {
+    height: 685px;
+}
+
+.character-loading, .character-picture {
     width: 500px;
+}
+
+.character-picture {
     height: 600px;
+}
+
+.character-loader {
+    position: absolute;
+    top: 45%;
+    left: 45%;
 }
 
 /** Below code is from template with some modifications. */
@@ -100,7 +117,6 @@ img.grayscale {
 .navbar-bold li a:hover, .navbar-bold li.active {
     background-color:#d46054;
 }
-
 
 .header h1 {
     font-size:50px;
@@ -203,4 +219,9 @@ img.grayscale {
 
 .call-to-action .btn {
     margin: 10px;
+}
+
+footer {
+    position: static;
+    bottom: 0;
 }

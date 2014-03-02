@@ -1,0 +1,16 @@
+<div class="battle-col col-sm-4" ng-class="{ 'col-sm-offset-2': $index == 0 }">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center">
+            <div class="character-loading" ng-hide="character.loaded">
+                <i class="character-loader fa fa-6x fa-spinner fa-spin"></i>
+            </div>
+            <div ng-show="character.loaded">
+                <img class="character-picture cursor-pointer"
+                     ng-click="arena.keepCharacter($index)"
+                     ng-src="{{ character.picture }}"/>
+
+                <h2>{{ character.name }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
