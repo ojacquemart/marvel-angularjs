@@ -1,29 +1,29 @@
 describe('service: Arena', function () {
 
+    var arena;
+
     beforeEach(module('marvel.app'));
 
-    beforeEach(inject(function () {
+    beforeEach(inject(function (Arena) {
+        arena = Arena.getArena();
     }));
 
     describe('On initialization', function () {
-        it('should init two characters', inject(function (Arena) {
-            var arena = Arena.getArena();
-
+        it('should init two characters', inject(function () {
             expect(arena.characters).not.toBeNull();
             expect(arena.characters.length).toBe(2);
         }));
     });
 
     describe('On restart', function () {
-        it('should create two new characters', inject(function (Arena) {
-            var arena = Arena.getArena();
+        it('should create two new characters', inject(function () {
             arena.restart();
 
             expect(arena.characters).not.toBeNull();
             expect(arena.characters.length).toBe(2);
         }));
 
-        it('should create two new characters with different offsets', inject(function (Arena) {
+        it('should create two new characters with different offsets', inject(function () {
 
             function mapCharactersToOffsets(characters) {
                 return _.map(characters, function (c) {
@@ -31,7 +31,6 @@ describe('service: Arena', function () {
                 });
             }
 
-            var arena = Arena.getArena();
             var oldCharactersOffsets = mapCharactersToOffsets(arena.characters);
 
             arena.restart();
@@ -42,13 +41,19 @@ describe('service: Arena', function () {
         }));
     });
 
+    describe('On new random character', function() {
+
+        it('should randomize the character at a given index', function() {
+            var oldCharacter1 = arena.characters[0];
+
+            arena.newRandomCharacter(0);
+
+            var newCharacter1 = arena.characters[0];
+            expect(newCharacter1.offset).not.toBe(oldCharacter1.offset);
+        });
+    });
+
     describe('On keeping', function () {
-
-        var arena;
-
-        beforeEach(inject(function (Arena) {
-            arena = Arena.getArena();
-        }));
 
         it('should not change the character to keep', inject(function () {
             var character1 = arena.characters[0];

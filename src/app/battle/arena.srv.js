@@ -1,7 +1,7 @@
 angular.module('marvel.app')
     .service('Arena', [ 'Character', 'RandomOffset', function (Character, RandomOffset) {
 
-        function getNewPlayer() {
+        function getNewCharacter() {
             return new Character(RandomOffset.getOffset());
         }
 
@@ -11,16 +11,19 @@ angular.module('marvel.app')
             this.init();
         };
         Arena.prototype.init = function() {
-            this.characters.push(getNewPlayer());
-            this.characters.push(getNewPlayer());
+            this.characters.push(getNewCharacter());
+            this.characters.push(getNewCharacter());
         };
         Arena.prototype.restart = function() {
             this.characters = [];
             this.init();
         };
+        Arena.prototype.newRandomCharacter = function(index) {
+          this.characters[index] = getNewCharacter();
+        };
         Arena.prototype.keepCharacter = function(index) {
             var characterIndexToChange = index == 0 ? 1 : 0;
-            this.characters[characterIndexToChange] = getNewPlayer();
+            this.characters[characterIndexToChange] = getNewCharacter();
         };
 
         this.getArena = function () {

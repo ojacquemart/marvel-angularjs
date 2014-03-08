@@ -16,14 +16,14 @@ body {
 }
 
 .battle-col .panel-heading {
-    padding: 20px 10px 0 10px;
+    padding: 20px 20px 0 20px;
 }
 
 .panel-heading {
     height: 685px;
 }
 
-.character-loading, .character-picture {
+.character-loading, .character-picture, .character-info {
     width: 500px;
 }
 
@@ -37,11 +37,32 @@ body {
     left: 45%;
 }
 
+.character-info {
+    position: relative;
+    margin-top: 10px;
+    height: 40px;
+}
+
+.character-info span {
+    font-size: 30px;
+}
+
+.character-random {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin: 0 5px 0 0;
+}
+
 /** Below code is from template with some modifications. */
 
 /* fix bs3 horizontal scrollbar bug */
 .row { margin: 0; padding: 0 }
 
+.col-sm-4 {
+    width: auto;
+    padding: 5px;
+}
 
 /* use special fonts in certain elements */
 h1,h2,h3,h4,.lead,.btn,.navbar a {
@@ -224,4 +245,8 @@ img.grayscale {
 footer {
     position: static;
     bottom: 0;
+}
+
+footer hr {
+    margin-top: 7px;
 }
