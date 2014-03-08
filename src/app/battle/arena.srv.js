@@ -1,33 +1,46 @@
 angular.module('marvel.app')
     .service('Arena', [ 'Character', 'RandomOffset', function (Character, RandomOffset) {
 
-        function getNewCharacter() {
+        this.characters = null;
+
+        var self = this;
+
+        this.init = function() {
+            this.characters = [];
+            this.characters.push(buildCharacter());
+            this.characters.push(buildCharacter());
+        };
+
+        function buildCharacterFrom(index) {
+            var otherIndex = index == 0 ? 1 : 0;
+            var otherOffset = self.characters[otherIndex].offset;
+
+            return new Character(RandomOffset.getNewOffset(otherOffset));
+        }
+
+        function buildCharacter() {
             return new Character(RandomOffset.getOffset());
         }
 
-        var Arena = function () {
+        this.restart = function() {
             this.characters = [];
+            this.init();
+        };
 
-            this.init();
+        this.newRandomCharacter = function(index) {
+          this.characters[index] = buildCharacterFrom(index);
         };
-        Arena.prototype.init = function() {
-            this.characters.push(getNewCharacter());
-            this.characters.push(getNewCharacter());
-        };
-        Arena.prototype.restart = function() {
-            this.characters = [];
-            this.init();
-        };
-        Arena.prototype.newRandomCharacter = function(index) {
-          this.characters[index] = getNewCharacter();
-        };
-        Arena.prototype.keepCharacter = function(index) {
+
+        this.keepCharacter = function(index) {
             var characterIndexToChange = index == 0 ? 1 : 0;
-            this.characters[characterIndexToChange] = getNewCharacter();
+            this.characters[characterIndexToChange] = buildCharacterFrom(index);
         };
 
         this.getArena = function () {
-            return new Arena();
+            return this;
         };
+
+        this.init();
+
     }])
 ;
