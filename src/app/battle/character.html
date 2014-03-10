@@ -5,15 +5,34 @@
                 <i class="character-loader fa fa-6x fa-spinner fa-spin"></i>
             </div>
             <div ng-show="character.loaded">
+                <div class="character-info" ng-hide="searchActive">
+                    <span>{{ character.name }}</span>
+                    <div class="character-toolbox">
+                        <i class="cursor-pointer glyphicon glyphicon-pencil"
+                           ng-click="toggleSearch()">
+                       </i>
+                        <i class="cursor-pointer glyphicon glyphicon-random"
+                           ng-click="arena.newRandomCharacter($index)">
+                       </i>
+                    </div>
+                </div>
+                <div class="character-search" ng-show="searchActive">
+                    <input type="text" ng-model="asyncSelected"
+                           ng-show="searchActive"
+                           placeholder="Search a character"
+                           typeahead="character.name for character in searchCharacter($viewValue)"
+                           typeahead-min-length="3"
+                           typeahead-wait-ms="250"
+                           typeahead-on-select="onSelectCharacter($item, $model, $label)"
+                           typeahead-loading="loadingCharacters"
+                           class="form-control">
+                    <i ng-show="loadingCharacters" class="character-typehead-loading fa fa-spinner fa-spin fa-2x"></i>
+                </div>
+
                 <img class="character-picture cursor-pointer"
                      ng-click="arena.keepCharacter($index)"
                      ng-src="{{ character.picture }}" />
 
-                <div class="character-info">
-                    <span>{{ character.name }}</span>
-                    <i class="character-random cursor-pointer glyphicon glyphicon-random"
-                        ng-click="arena.newRandomCharacter($index)"></i>
-                </div>
             </div>
         </div>
     </div>

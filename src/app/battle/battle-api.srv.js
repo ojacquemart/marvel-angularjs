@@ -1,13 +1,21 @@
 angular.module('marvel.app')
-    .service('BattleApi', [ 'MarvelRestangular', function(MarvelRestangular) {
-        /**
-         * Gets a character by its offset, from 0 to 1401.
-         */
-        this.getCharacter = function(offset) {
+    .service('BattleApi', [ 'MarvelRestangular', function (MarvelRestangular) {
+
+        this.findCharacterByOffset = function (offset) {
             return MarvelRestangular.one('characters').get({
                 limit: 1,
                 offset: offset
             });
         };
+
+        this.findCharacterById = function(id) {
+            return MarvelRestangular.one('characters', id).get();
+        };
+
+        this.findByNameStartingWith = function (name) {
+            return MarvelRestangular.one('characters').get({
+                nameStartsWith: name
+            });
+        }
     }])
 ;

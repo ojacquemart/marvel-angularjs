@@ -7,7 +7,7 @@ describe('service: BattleApi', function() {
         it('should call the MarvelRestangular provider', inject(function(MarvelRestangular, BattleApi) {
             spyOn(MarvelRestangular, 'one').andCallThrough();
 
-            BattleApi.getCharacter(0);
+            BattleApi.findCharacterByOffset(0);
 
             expect(MarvelRestangular.one).toHaveBeenCalledWith('characters');
         }));

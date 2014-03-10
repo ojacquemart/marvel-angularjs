@@ -1,6 +1,7 @@
 angular.module('marvel.app', [
         'ngRoute',
         'restangular',
+        'ui.bootstrap',
         'marvel.config',
         'marvel.common'
     ])

@@ -29,7 +29,7 @@ describe('factory: Character', function () {
                 return defer.promise;
             }
 
-            spyOn(BattleApi, 'getCharacter').andReturn(getSuccessfulPromise());
+            spyOn(BattleApi, 'findCharacterByOffset').andReturn(getSuccessfulPromise());
 
             var character = new Character(0);
 

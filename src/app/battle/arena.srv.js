@@ -15,11 +15,11 @@ angular.module('marvel.app')
             var otherIndex = index == 0 ? 1 : 0;
             var otherOffset = self.characters[otherIndex].offset;
 
-            return new Character(RandomOffset.getNewOffset(otherOffset));
+            return new Character(RandomOffset.getNewOffset(otherOffset)).loadByOffset();
         }
 
         function buildCharacter() {
-            return new Character(RandomOffset.getOffset());
+            return new Character(RandomOffset.getOffset()).loadByOffset();
         }
 
         this.restart = function() {
@@ -35,6 +35,10 @@ angular.module('marvel.app')
             var characterIndexToChange = index == 0 ? 1 : 0;
             this.characters[characterIndexToChange] = buildCharacterFrom(index);
         };
+
+        this.changeCharacter = function(index, characterId) {
+            this.characters[index] = new Character(characterId).loadById();
+        }
 
         this.getArena = function () {
             return this;

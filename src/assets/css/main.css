@@ -16,7 +16,7 @@ body {
 }
 
 .battle-col .panel-heading {
-    padding: 20px 20px 0 20px;
+    padding: 5px 20px 0 20px;
 }
 
 .panel-heading {
@@ -37,9 +37,10 @@ body {
     left: 45%;
 }
 
-.character-info {
+.character-info, .character-search {
     position: relative;
     margin-top: 10px;
+    margin-bottom: 10px;
     height: 40px;
 }
 
@@ -47,11 +48,24 @@ body {
     font-size: 30px;
 }
 
-.character-random {
+.character-search ul {
+    position: relative;
+    top: 0 !important;
+}
+
+.character-typehead-loading {
+    position: absolute;
+    right: 0;
+    margin-top: -30px;
+    margin-right: 10px;
+    color: #428bca;
+}
+
+.character-toolbox {
     position: absolute;
     top: 50%;
     right: 0;
-    margin: 0 5px 0 0;
+    margin-right: 5px;
 }
 
 /** Below code is from template with some modifications. */

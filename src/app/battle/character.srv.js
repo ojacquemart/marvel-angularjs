@@ -7,11 +7,23 @@ angular.module('marvel.app')
             this.id = null;
             this.name = null;
             this.picture = null;
-
-            this.load();
         };
 
-        Character.prototype.load = function () {
+        Character.prototype.loadByOffset = function() {
+            this.load(BattleApi.findCharacterByOffset(this.offset));
+
+            return this;
+        };
+
+        Character.prototype.loadById = function() {
+            this.load(BattleApi.findCharacterById(this.offset));
+
+            return this;
+        };
+
+        Character.prototype.load = function (promise) {
+            this.loaded = false;
+
             var self = this;
 
             var onSuccess = function (result) {
@@ -28,8 +40,7 @@ angular.module('marvel.app')
             var onError = function(result) {
             };
 
-            var character = BattleApi.getCharacter(this.offset);
-            character.then(onSuccess, onError);
+            promise.then(onSuccess, onError);
         };
 
         return Character;
