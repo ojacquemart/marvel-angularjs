@@ -21,13 +21,14 @@ module.exports = function (grunt) {
 
    // configurable paths
    var yeomanConfig = {
-      module: 'protoApp',
+      module: 'marvel.app',
       src: 'src',
       app: 'app',
       dist: 'dist',
       assets: {
          'css': 'assets/css',
          'img': 'assets/img',
+         'fonts': 'assets/fonts',
          'locale': 'assets/locale'
       },
       ngTemplatesFile: '.tmp/templates/templates.js',
@@ -59,14 +60,13 @@ module.exports = function (grunt) {
 
    grunt.registerTask('build', [
        'clean:dist',
-       'ngtemplates',
        'ngconstant:marvel',
        'useminPrepare',
+       'ngtemplates',
        'concurrent:dist',
        'autoprefixer',
        'concat',
        'copy:dist',
-       'cdnify',
        'ngmin',
        'cssmin',
        'uglify',
@@ -84,12 +84,11 @@ module.exports = function (grunt) {
        * @see config/*.json.
        */
       ngconstant: {
-         options: {
-            // Task-specific options go here.
-         },
          marvel: {
-             dest: '<%= yeoman.src %>/<%= yeoman.app %>/marvel-config.js',
-             name: 'marvel.config',
+             options: {
+                 dest: '<%= yeoman.src %>/<%= yeoman.app %>/marvel-config.js',
+                 name: 'marvel.config'
+             },
              constants: {
                  MarvelConfig: grunt.file.readJSON('config/marvel-config.json')
              }
@@ -104,7 +103,8 @@ module.exports = function (grunt) {
       ngtemplates: {
          app: {
             options: {
-               module: '<%= yeoman.module %>'
+               module: '<%= yeoman.module %>',
+               usemin: 'app/app.js'
             },
             cwd: '<%= yeoman.src %>',
             src: '<%= yeoman.app %>/**/*.html',
@@ -258,7 +258,6 @@ module.exports = function (grunt) {
       },
       usemin: {
          html: ['<%= yeoman.dist %>/{,*/}*.html'],
-         css: ['<%= yeoman.dist %>/<%= yeoman.assets.css %>/{,*/}*.css'],
          options: {
             dirs: ['<%= yeoman.dist %>']
          }
@@ -337,8 +336,8 @@ module.exports = function (grunt) {
                      '.htaccess',
                      '<%= yeoman.bowerComponent %>/**/*',
                      '<%= yeoman.assets.img %>/{,*/}*.{gif,webp}',
-                     '<%= yeoman.assets.css %>/fonts/*',
-                     '<%= yeoman.assets.locale %>/*.json',
+                     '<%= yeoman.assets.fonts %>/*',
+                     '<%= yeoman.assets.locale %>/*.json'
                   ]
                },
                {
@@ -348,6 +347,20 @@ module.exports = function (grunt) {
                   src: [
                      'generated/*'
                   ]
+               },
+               // Bootstrap fonts
+               {
+                  expand: true,
+                  cwd: '<%= yeoman.src %>/<%= yeoman.bowerComponent %>/bootstrap/fonts',
+                  dest: '<%= yeoman.dist %>/<%= yeoman.assets.fonts %>',
+                  src: [ '**']
+               },
+               // Font awesome fonts
+               {
+                  expand: true,
+                  cwd: '<%= yeoman.src %>/<%= yeoman.bowerComponent %>/font-awesome/fonts',
+                  dest: '<%= yeoman.dist %>/<%= yeoman.assets.fonts %>',
+                  src: [ '**' ]
                }
             ]
          },
@@ -378,11 +391,6 @@ module.exports = function (grunt) {
             singleRun: true
          }
       },
-      cdnify: {
-         dist: {
-            html: ['<%= yeoman.dist %>/*.html']
-         }
-      },
       ngmin: {
          dist: {
             files: [
@@ -395,15 +403,10 @@ module.exports = function (grunt) {
             ]
          }
       },
-      uglify: {
-         dist: {
-            files: {
-               '<%= yeoman.dist %>/<%= yeoman.app %>/app.js': [
-                  '<%= yeoman.dist %>/<%= yeoman.app %>/app.js',
-                  '<%= yeoman.ngTemplatesFile %>'
-               ]
-            }
-         }
-      }
+       uglify: {
+           options: {
+               mangle: false
+           }
+       }
    });
 };
