@@ -1,9 +1,9 @@
 angular.module('marvel.app')
-    .controller('ComicsCtrl', [ '$scope', 'Restangular', function ($scope, Restangular) {
-        $scope.result = null;
-        Restangular.one('comics').get().then(function(result) {
-            $scope.result = result;
-        });
-    }])
+.controller('ComicsCtrl', function ($scope, Restangular) {
+    $scope.result = null;
+    Restangular.one('comics').get().then(function(result) {
+        $scope.result = result;
+    });
+})
 ;
 

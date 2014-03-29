@@ -1,7 +1,7 @@
 angular.module('marvel.app')
-   .controller('BattleCtrl', [ '$scope', 'Arena', function ($scope, Arena) {
+.controller('BattleCtrl', function ($scope, Arena) {
 
-        $scope.arena = Arena.getArena();
+    $scope.arena = Arena.getArena();
 
-   }])
+})
 ;
