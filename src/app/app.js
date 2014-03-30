@@ -12,12 +12,28 @@ angular.module('marvel.app', [
             templateUrl: 'app/battle/battle.html'
         })
         .when('/characters', {
-            controller: 'CharactersCtrl',
-            templateUrl: 'app/characters/characters.html'
+            controller: 'DataCtrl',
+            templateUrl: 'app/data/data.html',
+            resolve: {
+                metadata: function (DataResolver) {
+                    return DataResolver.getMetadata('characters', 'name');
+                },
+                data: function (DataResolver) {
+                    return DataResolver.getData('characters');
+                }
+            }
         })
         .when('/comics', {
-            controller: 'ComicsCtrl',
-            templateUrl: 'app/comics/comics.html'
+            controller: 'DataCtrl',
+            templateUrl: 'app/data/data.html',
+            resolve: {
+                metadata: function (DataResolver) {
+                    return DataResolver.getMetadata('comics', 'title');
+                },
+                data: function (DataResolver) {
+                    return DataResolver.getData('comics');
+                }
+            }
         })
         .otherwise({
             redirectTo: '/battle'

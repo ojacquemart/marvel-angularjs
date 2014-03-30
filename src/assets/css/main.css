@@ -20,6 +20,18 @@ body {
     color: #999;
 }
 
+pre {
+    max-height: 200px;
+}
+
+.clear-both {
+    clear: both;
+}
+
+.pagination > li > a {
+    cursor: pointer;
+}
+
 .fa-6x {
     font-size: 6em;
 }
@@ -79,6 +91,56 @@ body {
     top: 50%;
     right: 0;
     margin-right: 5px;
+}
+
+.marvel-panel {
+    border: 0px transparent;
+}
+
+.marvel-item-row {
+    position: relative;
+    float: left;
+    width: 30%;
+    margin-bottom: 10px !important;
+}
+
+.marvel-item-picture {
+    margin-left: 100px;
+}
+
+.marvel-item-picture > a > img {
+    width:100px;
+    height:100px
+}
+
+.marvel-item-container {
+    position: absolute;
+    margin-left: 200px;
+    width: 70%;
+}
+
+.marvel-item-container h3 {
+    color: #000;
+}
+
+.pagination {
+    margin: 0 0 15px 0;
+}
+
+.pagination > .active > a {
+    background-color: #6E28C9;
+    border-color:#4C06AB;
+}
+
+.pagination > .active > a:hover {
+    border-color: #6E28C9;
+    background-color:#4C06AB;
+}
+
+
+
+.pagination > li > a {
+    color: #000;
 }
 
 /** Below code is from template with some modifications. */
@@ -183,7 +245,7 @@ img.grayscale {
 
 .header {
     padding-bottom: 20px;
-    background: #f68076 url('http://www.bootply.com/assets/example/pt_topo_l.png') repeat center center fixed;
+    background: #f68076 url('../img/pt_topo_l.png') repeat center center fixed;
 }
 
 /* use alt in navbar and header for different color */
@@ -214,7 +276,7 @@ img.grayscale {
 }
 
 .bright {
-    background: #dbdbdb url('http://www.bootply.com/assets/example/pt_topo.png') repeat center center fixed;
+    background: #dbdbdb url('../img/pt_topo.png') repeat center center fixed;
     color:#777;
 }
 

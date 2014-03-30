@@ -1,0 +1,38 @@
+<div class="header alt vert">
+    <div class="container">
+        <h1>{{ metadata.title }}</h1>
+    </div>
+</div>
+<div class="blurb bright  col-md-12">
+    <div class="col-md-2 col-sm-3 marvel-item-row"
+            ng-repeat="item in result.data.results">
+        <div class="marvel-item-picture pull-left" style="margin-left: 100px">
+            <a class="story-title" ng-href="{{ item.urls[0].url }}">
+                <img ng-src="{{ item.thumbnail.path}}.{{ item.thumbnail.extension}}" class="img-circle">
+            </a>
+        </div>
+        <div class="marvel-item-container visible-lg col-md-10 col-sm-9">
+            <h3 ng-bind="item[metadata.propertyDescription]"></h3>
+            <div class="row">
+                <div class="col-xs-9">
+                    <h4>
+                        <a ng-href="{{ item.urls[0].url }}" class="text-muted">Read More</a>
+                    </h4>
+                </div>
+                <div class="col-xs-3"></div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row text-center clear-both">
+        <hr/>
+        <pagination class="pagination-sm"
+                    total-items="result.data.total"
+                    items-per-page="18"
+                    page="metadata.page" max-size="5"
+                    boundary-links="true"
+                    rotate="false"
+                    on-select-page="changePage(page)">
+        </pagination>
+    </div>
+</div>
