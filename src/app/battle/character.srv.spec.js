@@ -32,6 +32,7 @@ describe('factory: Character', function () {
             spyOn(BattleApi, 'findCharacterByOffset').andReturn(getSuccessfulPromise());
 
             var character = new Character(0);
+            character.loadByOffset();
 
             $rootScope.$apply();
 
