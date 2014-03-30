@@ -5,7 +5,7 @@ angular.module('marvel.app', [
     'marvel.config',
     'marvel.common'
 ])
-.config(function ($routeProvider) {
+.config(function ($httpProvider, $routeProvider) {
     $routeProvider
         .when('/battle', {
             controller: 'BattleCtrl',
@@ -23,6 +23,7 @@ angular.module('marvel.app', [
             redirectTo: '/battle'
         });
 
+    $httpProvider.interceptors.push('httpBroadcaster');
 })
 .run(function ($rootScope, $location) {
 })

@@ -12,6 +12,14 @@ body {
     font-family:Arial,sans-serif;
 }
 
+.navbar-loader i {
+    line-height: 20px;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 1.8em;
+    color: #999;
+}
+
 .fa-6x {
     font-size: 6em;
 }
