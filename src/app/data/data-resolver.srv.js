@@ -1,5 +1,8 @@
 angular.module('marvel.app')
-.service('DataResolver', function($location, MarvelRestangular) {
+.constant('DataConstants', {
+    PAGE_SIZE: 18
+})
+.service('DataResolver', function($location, DataConstants, MarvelRestangular) {
     var PAGE_SIZE = 18;
 
     function getPage() {
@@ -31,7 +34,7 @@ angular.module('marvel.app')
     this.getOffset = function() {
         var page = getPage() - 1;
 
-        return PAGE_SIZE * page;
+        return DataConstants.PAGE_SIZE * page;
     };
 })
 ;

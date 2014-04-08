@@ -1,5 +1,6 @@
 angular.module('marvel.app', [
     'ngRoute',
+    'cfp.hotkeys',
     'restangular',
     'ui.bootstrap',
     'marvel.config',

@@ -15,8 +15,15 @@ describe('controller: DataCtrl', function () {
 
         var $controller = $injector.get('$controller');
 
-        expectedMetadata = { title: 'foo', propertyDescription: 'bar' };
-        expectedData = { data: [ { name: 'foo' } ] };
+        expectedMetadata = { page: 2, title: 'foo', propertyDescription: 'bar' };
+        expectedData = {
+            data: {
+                total: 180,
+                count: 10,
+                data: [ { name: 'foo' } ]
+            }
+        };
+
         createController = function() {
             return $controller('DataCtrl', {
                 '$scope': $scope,
@@ -39,6 +46,16 @@ describe('controller: DataCtrl', function () {
 
         $scope.changePage(10);
 
+        expect($location.search()['p']).toBe(10);
+    }));
+
+    it('should change the $location in limited page ranges', inject(function () {
+        createController();
+
+        $scope.changePage(-1);
+        expect($location.search()['p']).toBe(1);
+
+        $scope.changePage(110);
         expect($location.search()['p']).toBe(10);
     }));
 
