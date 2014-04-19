@@ -227,11 +227,22 @@ module.exports = function (grunt) {
        */
       jshint: {
          options: {
-            jshintrc: '.jshintrc'
+             node: true,
+             curly: true,
+             immed: true,
+             newcap: true,
+             noarg: true,
+             sub: true,
+             boss: true,
+             eqnull: true,
+             globals: {
+                 angular: true
+             }
          },
          all: [
-            'Gruntfile.js',
-            '<%= yeoman.src %>/<%= yeoman.app %>/{,*/}*.js'
+             'Gruntfile.js',
+            '<%= yeoman.src %>/<%= yeoman.app %>/**/*.js',
+            '!<%= yeoman.src %>/<%= yeoman.app %>/**/*.spec.js'
          ]
       },
       // not used since Uglify task does concat,
