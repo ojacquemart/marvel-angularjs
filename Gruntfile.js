@@ -60,6 +60,9 @@ module.exports = function (grunt) {
 
    grunt.registerTask('build', [
        'clean:dist',
+       'clean:coverage',
+       'karma',
+       'copy:coverage',
        'ngconstant:marvel',
        'useminPrepare',
        'ngtemplates',
@@ -195,6 +198,7 @@ module.exports = function (grunt) {
        * Clean some directories...
        */
       clean: {
+         coverage: 'coverage',
          dist: {
             files: [
                {
@@ -324,7 +328,18 @@ module.exports = function (grunt) {
       },
       // Put files not handled in other tasks here
       copy: {
-         dist: {
+          // Copy coverage lcov.info too coverage root folder. It's in a browser specific folder.
+          // See issue: https://github.com/karma-runner/karma-coverage/pull/62
+          coverage: {
+              mode: true,
+              expand : true,
+              flatten : true,
+              cwd : 'coverage',
+              src : ['**/lcov.info'],
+              dest : 'coverage',
+              filter : 'isFile'
+          },
+          dist: {
             files: [
                {
                   expand: true,
