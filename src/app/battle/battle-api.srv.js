@@ -16,6 +16,6 @@ angular.module('marvel.app')
         return MarvelRestangular.one('characters').get({
             nameStartsWith: name
         });
-    }
+    };
 })
 ;

@@ -30,6 +30,6 @@ angular.module('marvel.common')
         replace: true,
         controller: 'CharacterCtrl',
         templateUrl: 'app/battle/character.html'
-    }
+    };
 })
 ;
